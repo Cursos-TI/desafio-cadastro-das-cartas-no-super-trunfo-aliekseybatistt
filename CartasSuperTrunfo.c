@@ -11,8 +11,9 @@ int main() {
     // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
     
     char estado1, estado2, codigo1[4], codigo2[4], cidade1[20], cidade2[20];
-    int populacao1, populacao2, ponto_turistico1, ponto_turistico2;
-    float area1, area2, pib1, pib2, dens_pop1, dens_pop2, pib_per1, pib_per2;
+    int ponto_turistico1, ponto_turistico2;
+    unsigned long int populacao1, populacao2;
+    float area1, area2, pib1, pib2, dens_pop1, dens_pop2, pib_per1, pib_per2, super_poder1, super_poder2, invert_dens1, invert_dens2;
 
     // Cadastro das Cartas:
     // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
@@ -53,7 +54,13 @@ int main() {
 
     dens_pop2 = (float) populacao2 / area2;
     pib_per2 = (float) (pib2 / populacao2) * 1000000000;
-    
+
+    invert_dens1 = (float) 1 / dens_pop1;
+    invert_dens2 = (float) 1 / dens_pop2;
+
+    super_poder1 = (float) populacao1 + area1 + pib1 + ponto_turistico1 + pib_per1 + invert_dens1;
+    super_poder2 = (float) populacao2 + area2 + pib2 + ponto_turistico2 + pib_per2 + invert_dens2;
+
     // Exibição dos Dados das Cartas:
     // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
     // Exiba os valores inseridos para cada atributo da cidade, um por linha.
@@ -75,8 +82,12 @@ int main() {
     printf("PIB: %.2f bilhões de reais\n" , pib2);
     printf("Área: %.2f km²\n" , area2);
     printf("Número de pontos turísticos: %d \n" , ponto_turistico2);
-    printf("Densidade populacional: %.2f hab/km²\n " , dens_pop2);
-    printf("PIB per capita: %.2f reais/hab" , pib_per2);
+    printf("Densidade populacional: %.2f hab/km²\n" , dens_pop2);
+    printf("PIB per capita: %.2f reais/hab\n\n" , pib_per2);
+
+    printf("Super poder 1: %.2f \nSuper poder 2: %.2f \n\n" , super_poder1, super_poder2);
+
+    printf("Resultado 1 Carta 1 venceu e Resultado 0 Carta 2 venceu \nPopulação: %d \nPIB: %d \nÁrea: %d \nNúmero de Pontos Turísticos: %d \nDensidade Populacional: %d \nPIB per capita: %d \nSuper Poder: %d" , populacao1 > populacao2, pib1 > pib2, area1 > area2, ponto_turistico1 > ponto_turistico2, dens_pop1 < dens_pop2, pib_per1 > pib_per2, super_poder1 > super_poder2);
 
     return 0;
 }
